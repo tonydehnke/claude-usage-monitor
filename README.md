@@ -20,8 +20,25 @@ Both scripts do the same thing — pick the one that fits your setup.
 
 ## Requirements
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI, logged in
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI (Pro or Max subscription)
 - `curl` and `jq`
+
+## Prerequisites: Connecting to Your Account
+
+These scripts use the OAuth token that Claude Code creates when you log in. **No API key needed** — it uses your existing Claude Code session.
+
+1. **Install Claude Code** if you haven't already: `npm install -g @anthropic-ai/claude-code`
+2. **Log in** by running `claude` in your terminal and completing the login flow
+3. That's it — the script reads the token automatically
+
+**Where the token lives:**
+- **macOS**: Stored in Keychain (under "Claude Code-credentials"). The script reads it with `security find-generic-password`.
+- **Linux**: Stored in `~/.claude/credentials.json`. The script reads it with `jq`.
+
+**Troubleshooting:**
+- Getting `--:-- --%`? Make sure you've run `claude` at least once and completed login.
+- Token expired? Just open Claude Code again — it refreshes automatically.
+- Make sure `curl` and `jq` are installed: `brew install jq` (macOS) or `sudo apt install jq` (Linux).
 
 ---
 
