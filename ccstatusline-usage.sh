@@ -13,6 +13,14 @@
 # Requirements: curl, jq, Claude Code (logged in)
 #
 
+for cmd in curl jq; do
+  if ! command -v "$cmd" &>/dev/null; then
+    echo "ERR: $cmd not found" >&2
+    echo "--:-- --%"
+    exit 1
+  fi
+done
+
 CACHE_FILE="$HOME/.cache/ccstatusline-usage.txt"
 LOCK_FILE="$HOME/.cache/ccstatusline-usage.lock"
 

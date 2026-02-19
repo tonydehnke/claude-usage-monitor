@@ -22,6 +22,16 @@ LOCK_TTL=30     # seconds between API attempts
 
 mkdir -p "$CACHE_DIR"
 
+# --- Dependency check ---
+
+for cmd in curl jq; do
+  if ! command -v "$cmd" &>/dev/null; then
+    echo "ERR: $cmd not found" >&2
+    echo "--:-- --%"
+    exit 1
+  fi
+done
+
 # --- Helpers ---
 
 file_age() {
